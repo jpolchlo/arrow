@@ -78,5 +78,7 @@ ARROW_PYTHON_EXPORT Status RegisterPyExtensionType(const std::shared_ptr<DataTyp
 
 ARROW_PYTHON_EXPORT Status UnregisterPyExtensionType(const std::string& type_name);
 
+    ARROW_PYTHON_EXPORT Status GetPyExtensionType(const std::string& type_name, std::shared_ptr<DataType>&);
+
 }  // namespace py
 }  // namespace arrow

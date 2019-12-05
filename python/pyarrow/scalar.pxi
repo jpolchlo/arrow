@@ -1130,6 +1130,12 @@ cdef object box_scalar(DataType type, const shared_ptr[CArray]& sp_array,
         return _NULL
     elif sp_array.get().IsNull(index):
         return _NULL
+    # elif type.type.id() == _Type_EXTENSION:
+    #     klass = _array_value_classes[type.storage_type.id]
+    #     value = klass.__new__(klass)
+    #     value.init(type.storage_type, checked_pointer_cast[CExtensionArray](sp_array).storage(), index)
+    #     # Interdict here and convert the value to the desired type
+    #     return value
     else:
         klass = _array_value_classes[type.type.id()]
         value = klass.__new__(klass)

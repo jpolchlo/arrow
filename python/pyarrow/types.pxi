@@ -764,6 +764,12 @@ def unregister_extension_type(type_name):
         c_string c_type_name = tobytes(type_name)
     check_status(UnregisterPyExtensionType(c_type_name))
 
+def lookup_extension_type(type_name):
+    cdef:
+        shared_ptr[CDataType] cpy_ext_type
+        c_string c_extension_name = tobytes(type_name)
+    check_status(GetPyExtensionType(c_extension_name, cpy_ext_type))
+    pyarrow_wrap_data_type(cpy_ext_type)
 
 cdef class Field:
     """

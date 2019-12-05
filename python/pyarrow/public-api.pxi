@@ -201,7 +201,11 @@ cdef api object pyarrow_wrap_array(const shared_ptr[CArray]& sp_array):
     if data_type == NULL:
         raise ValueError('Array data type was NULL')
 
-    klass = _array_classes[data_type.id()]
+    if data_type.id() == _Type_EXTENSION:
+        print(pyarrow_wrap_data_type(sp_array.get().type()))
+        klass = pyarrow_wrap_data_type(sp_array.get().type()) # None # How to get to the Python DataType to access __arrow_ext_class?
+    else:
+        klass = _array_classes[data_type.id()]
 
     cdef Array arr = klass.__new__(klass)
     arr.init(sp_array)

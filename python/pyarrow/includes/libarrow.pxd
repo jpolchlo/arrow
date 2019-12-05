@@ -1697,6 +1697,7 @@ cdef extern from 'arrow/python/extension_type.h' namespace 'arrow::py':
     c_string PyExtensionName()
     CStatus RegisterPyExtensionType(shared_ptr[CDataType])
     CStatus UnregisterPyExtensionType(c_string type_name)
+    CStatus GetPyExtensionType(c_string type_name, shared_ptr[CDataType])
 
 
 cdef extern from 'arrow/python/benchmark.h' namespace 'arrow::py::benchmark':
