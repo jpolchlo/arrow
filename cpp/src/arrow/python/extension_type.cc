@@ -201,7 +201,7 @@ Status UnregisterPyExtensionType(const std::string& type_name) {
   return UnregisterExtensionType(type_name);
 }
 
-Status GetPyExtensionType(const std::string& type_name, std::shared_ptr<DataType>* out) {
+Status GetPyExtensionType(const std::string& type_name, std::shared_ptr<DataType>& out) {
 
   auto ext_type = std::static_pointer_cast<DataType>(GetExtensionType(type_name));
   out->reset(ext_type.get());
